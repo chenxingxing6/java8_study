@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -20,26 +21,40 @@ public class DateUtil {
         long time = localDateTimeToTimestamp(localDateTime);
         System.out.println(time);
         System.out.println(format(System.currentTimeMillis(), "yyyyMMdd"));
+
     }
 
 
+    /**
+     * 格式化时间
+     * @param timeStamp
+     * @param pattern
+     * @return
+     */
     public static String format(Long timeStamp, String pattern) {
         DateTimeFormatter format = DateTimeFormatter.ofPattern(pattern);
         LocalDateTime localDateTime = timestampToDateTime(timeStamp);
         return localDateTime.format(format);
     }
 
+
+    /**
+     * 时间戳转localDateTime
+     * @param timestamp
+     * @return
+     */
     public static LocalDateTime timestampToDateTime(long timestamp){
         Instant instant = Instant.ofEpochMilli(timestamp);
         return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
     }
 
+    /**
+     * localDateTime转时间戳
+     * @param localDateTime
+     * @return
+     */
     public static long localDateTimeToTimestamp(LocalDateTime localDateTime){
         Instant instant = localDateTime.atZone(ZoneId.systemDefault()).toInstant();
         return instant.toEpochMilli();
     }
-
-
-
-
 }
