@@ -19,6 +19,4 @@ public class StreamTest1 {
             stringCollection.add("Index" +i);
         }
     }
-
-
 }
