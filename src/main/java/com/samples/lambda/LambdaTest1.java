@@ -2,10 +2,7 @@ package com.samples.lambda;
 
 import com.google.common.collect.Lists;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * User: lanxinghua
@@ -19,7 +16,10 @@ public class LambdaTest1 {
     }
 
     public static void main(String[] args) {
-        sort();
+        //threadTest();
+        //sort();
+        mapTest();
+
     }
 
     // 线程
@@ -53,6 +53,16 @@ public class LambdaTest1 {
 
         names.sort((a, b) -> a.compareTo(b));
         print(names);
+    }
+
+    public static void mapTest(){
+        Map<String, Integer> maps = new HashMap<>();
+        maps.put("key1", 1);
+        maps.put("key2", 2);
+        maps.put("key3", 3);
+        maps.forEach((k, v) -> {
+            System.out.println(k + ":" + v);
+        });
     }
 
     public static void print(List<String> names){
