@@ -3,7 +3,10 @@ package com.samples.stream;
 import com.google.common.collect.Lists;
 
 import javax.annotation.PostConstruct;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * User: lanxinghua
@@ -11,12 +14,22 @@ import java.util.List;
  * Desc:
  */
 public class StreamTest1 {
-    List<String> stringCollection = Lists.newArrayList();
-
-    @PostConstruct
-    public void init(){
+    static List<String> stringCollection = Lists.newArrayList();
+    static Map<String, String> map = new ConcurrentHashMap<>();
+    static {
         for (int i = 0; i < 10; i++) {
             stringCollection.add("Index" +i);
         }
+        for (int i = 0; i < 10 ; i++) {
+            map.put("key" + i, i + "");
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(stringCollection.size());
+
+        map.forEach((k, v) -> {
+            System.out.println(k + ":" + v);
+        });
     }
 }
